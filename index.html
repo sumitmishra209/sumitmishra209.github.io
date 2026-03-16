@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sumit Mishra — PhD Researcher, KAIST</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c18;
+    --bg2: #0d1224;
+    --bg3: #111829;
+    --surface: #141b2e;
+    --border: rgba(180,160,100,0.18);
+    --gold: #c9a84c;
+    --gold2: #e8c97a;
+    --cream: #f0ead8;
+    --muted: #8a94aa;
+    --text: #dde3ee;
+    --accent: #4a9eff;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:0;
+    opacity:.5;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 60px;
+    background: rgba(8,12,24,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--gold2);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold2); }
+
+  /* ─── HERO ─── */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 8vw 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 40%, rgba(74,158,255,.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 70%, rgba(201,168,76,.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp .7s .1s forwards;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -.01em;
+    color: var(--cream);
+    margin-bottom: .5rem;
+    opacity: 0;
+    animation: fadeUp .8s .2s forwards;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold2);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp .8s .35s forwards;
+  }
+  .hero-desc {
+    max-width: 640px;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp .8s .5s forwards;
+    line-height: 1.9;
+  }
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    opacity: 0;
+    animation: fadeUp .8s .65s forwards;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .65rem 1.4rem;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #080c18;
+    font-weight: 400;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,.25); }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: transparent;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold2); transform: translateY(-2px); }
+
+  /* ─── PHOTO PLACEHOLDER ─── */
+  .hero-photo {
+    position: absolute;
+    right: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp .8s .9s forwards;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(201,168,76,.08);
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .hero-photo svg {
+    width: 48px;
+    height: 48px;
+    opacity: .35;
+  }
+  .hero-photo span { opacity: .5; }
+  @media (max-width: 1000px) { .hero-photo { display: none; } }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp .8s .8s forwards;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold2);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: .3rem;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 6rem 8vw;
+    position: relative;
+    z-index: 1;
+  }
+  section:nth-child(even) { background: var(--bg2); }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .8rem;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 3rem;
+    line-height: 1.15;
+  }
+  h2 span { color: var(--gold2); font-style: italic; }
+
+  /* ─── ABOUT ─── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+  }
+  .interests-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+  .interests-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: .7rem;
+    font-size: .9rem;
+    color: var(--muted);
+  }
+  .interests-list li::before {
+    content: '→';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: .05rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ─── EDUCATION ─── */
+  .edu-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .edu-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color .2s;
+  }
+  .edu-item:hover { border-color: var(--gold); }
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    color: var(--gold);
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    align-self: center;
+    padding-right: 1rem;
+    border-right: 1px solid var(--border);
+  }
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    font-weight: 600;
+  }
+  .edu-school { color: var(--gold2); font-size: .9rem; margin: .25rem 0; }
+  .edu-detail { color: var(--muted); font-size: .85rem; }
+  .edu-thesis { color: var(--text); font-size: .85rem; font-style: italic; margin-top: .4rem; }
+
+  /* ─── PUBLICATIONS ─── */
+  .pub-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+  }
+  .pub-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: .6rem 1rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all .2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .pub-tab.active { color: var(--gold2); border-bottom-color: var(--gold); }
+  .pub-tab:hover { color: var(--gold2); }
+  .pub-list { display: none; }
+  .pub-list.active { display: flex; flex-direction: column; gap: 1rem; }
+  .pub-item {
+    padding: 1.4rem 1.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    transition: all .2s;
+  }
+  .pub-item:hover { border-left-color: var(--gold2); transform: translateX(4px); background: var(--bg3); }
+  .pub-item.under-review { border-left-color: var(--accent); }
+  .pub-venue {
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+  }
+  .pub-item.under-review .pub-venue { color: var(--accent); }
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: .4rem;
+  }
+  .pub-authors { font-size: .82rem; color: var(--muted); }
+  .pub-authors strong { color: var(--text); }
+  .pub-badge {
+    display: inline-block;
+    margin-top: .5rem;
+    padding: .2rem .6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: .62rem;
+    letter-spacing: .08em;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .badge-featured { background: rgba(201,168,76,.15); color: var(--gold2); }
+  .badge-review { background: rgba(74,158,255,.12); color: var(--accent); }
+  .badge-if { background: rgba(255,255,255,.06); color: var(--muted); margin-left: .3rem; }
+
+  /* ─── PROJECTS ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .project-card:hover { border-color: rgba(201,168,76,.4); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+  .project-card:hover::before { opacity: 1; }
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .8rem;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: .8rem;
+  }
+  .project-desc { font-size: .87rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+  .project-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  .metric {
+    padding: .25rem .7rem;
+    background: rgba(201,168,76,.08);
+    border: 1px solid rgba(201,168,76,.2);
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    color: var(--gold2);
+    letter-spacing: .05em;
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-group {
+    padding: 1.8rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    padding-bottom: .8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  .skill-tag {
+    padding: .3rem .75rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 3px;
+    font-size: .8rem;
+    color: var(--text);
+  }
+
+  /* ─── EXPERIENCE ─── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 2.5rem 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: .4rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(201,168,76,.5);
+  }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+  }
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    font-weight: 600;
+  }
+  .timeline-org { color: var(--gold2); font-size: .9rem; margin-bottom: .8rem; }
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .timeline-bullets li {
+    font-size: .88rem;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .timeline-bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ─── PATENTS ─── */
+  .patent-item {
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+  .patent-id {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    color: var(--gold);
+    letter-spacing: .1em;
+    margin-bottom: .4rem;
+  }
+  .patent-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .patent-detail { font-size: .82rem; color: var(--muted); margin-top: .4rem; }
+
+  /* ─── AWARDS ─── */
+  .awards-list { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
+  .awards-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: .9rem;
+  }
+  .awards-list li span { font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--gold); }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--bg2);
+    text-align: center;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: left;
+  }
+  .contact-item {
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .5rem;
+  }
+  .contact-value {
+    font-size: .9rem;
+    color: var(--text);
+    word-break: break-all;
+  }
+  .contact-value a { color: var(--text); text-decoration: none; }
+  .contact-value a:hover { color: var(--gold2); }
+  .refs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+    text-align: left;
+  }
+  .ref-card {
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .ref-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--cream); font-weight: 600; }
+  .ref-role { font-size: .8rem; color: var(--gold2); margin: .3rem 0; }
+  .ref-email { font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--muted); }
+  .ref-email a { color: inherit; text-decoration: none; }
+  .ref-email a:hover { color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2rem 8vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: .68rem;
+    color: var(--muted);
+    letter-spacing: .08em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(20px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s, transform .6s;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 5vw; }
+    #home { padding: 7rem 5vw 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    h1 { font-size: 3rem; }
+    .hero-stats { gap: 1.5rem; }
+    footer { flex-direction: column; gap: .5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">S · Mishra</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#publications">Papers</a></li>
+    <li><a href="#projects">Research</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-eyebrow">PhD Candidate · KAIST · Daejeon, South Korea</div>
+  <h1>Sumit<br><em>Mishra</em></h1>
+  <div class="hero-title">Multimodal Foundation Models &amp; Vision-Language Learning for Safety-Critical Systems</div>
+  <p class="hero-desc">
+    Deep learning researcher at KAIST's Vehicular Intelligence Lab, specializing in CLIP-based systems,
+    cross-modal knowledge distillation, and explainable AI. Building perception systems that bridge 
+    foundational multimodal research with real-world road safety deployment.
+  </p>
+  <div class="hero-links">
+    <a href="https://scholar.google.com/citations?user=eDlZ34UAAAAJ&hl=en" target="_blank" class="btn btn-primary">Google Scholar</a>
+    <a href="https://www.linkedin.com/in/sumit-mishra-13797386/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+    <a href="/cdn-cgi/l/email-protection#0271776f6b766f6b716a706330323b4269636b71762c63612c6970" class="btn btn-ghost">Email KAIST</a>
+    <a href="/cdn-cgi/l/email-protection#f48781999d80999d879c8695c6c4cdb49399959d98da979b99" class="btn btn-ghost">Email Gmail</a>
+    <!-- Upload your files to a "files/" folder in your GitHub repo, then these links will work -->
+    <a href="files/Sumit_Mishra_CV.pdf" download class="btn btn-ghost">↓ Download CV</a>
+    <a href="files/Sumit_Mishra_Resume.pdf" download class="btn btn-ghost">↓ Download Resume</a>
+  </div>
+
+  <!-- PHOTO: Upload your image to an "images/" folder in your GitHub repo.
+       Name it "profile.jpg" (or update the src below). The silhouette shows until the image loads. -->
+  <div class="hero-photo">
+    <img src="images/profile.jpg" alt="Sumit Mishra"
+         onerror="this.style.display='none'; this.parentElement.querySelector('.photo-fallback').style.display='flex'">
+    <div class="photo-fallback" style="display:flex;flex-direction:column;align-items:center;gap:.5rem;pointer-events:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <span>your photo here</span>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">13+</div>
+      <div class="stat-label">Journal Papers</div>
+    </div>
+    <div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Patents</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Profile</div>
+  <h2>About <span>Me</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I am a PhD candidate in Robotics at KAIST (Korea Advanced Institute of Science and Technology),
+        affiliated with the <strong>Vehicular Intelligence Lab</strong> under Prof. Dongsoo Har.
+        My thesis — <em>"Explainable AI for Safer Roads Using Multimodal Framework"</em> — investigates
+        how vision-language foundation models can make autonomous perception systems both accurate and interpretable.
+      </p>
+      <p>
+        My work spans self-supervised visual-language learning, cross-modal knowledge distillation,
+        concept bottleneck models, and edge-AI optimization. I have published in IEEE Transactions on
+        ITS (IF 8.5), ISPRS (IF 12.2), and other top venues, with two papers featured in
+        <strong>KAIST Breakthrough</strong>.
+      </p>
+      <p>
+        Before KAIST, I spent several years as a research consultant on smart-city AI projects in India,
+        collaborating with Deloitte India and securing grants from the University of Edinburgh and
+        the Government of India. My Indian Patent (No. 538566) is deployed in Hyderabad and Bangalore
+        for adaptive traffic signaling.
+      </p>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom:.8rem">Research Interests</div>
+      <ul class="interests-list">
+        <li>Vision-Language &amp; Multimodal Foundation Models (CLIP, BLIP, LLaVA)</li>
+        <li>Zero-shot, Few-shot &amp; Weakly Supervised Learning</li>
+        <li>Cross-modal Knowledge Transfer &amp; Alignment</li>
+        <li>Explainable AI in Computer Vision</li>
+        <li>Safety-Critical Autonomous Perception Systems</li>
+        <li>Edge-AI Optimization &amp; Model Compression</li>
+        <li>Intelligent Transportation Systems (ADAS, VAD)</li>
+      </ul>
+
+      <div class="section-label" style="margin-top:2rem;margin-bottom:.8rem">Education</div>
+      <div class="edu-list">
+        <div class="edu-item reveal">
+          <div class="edu-year">2023–2026</div>
+          <div>
+            <div class="edu-degree">Ph.D. in Robotics</div>
+            <div class="edu-school">KAIST · GPA 3.85/4.3 (95.5%)</div>
+            <div class="edu-thesis">Thesis: Explainable AI for Safer Roads Using Multimodal Framework</div>
+          </div>
+        </div>
+        <div class="edu-item reveal">
+          <div class="edu-year">2021–2023</div>
+          <div>
+            <div class="edu-degree">M.S. in Robotics</div>
+            <div class="edu-school">KAIST · GPA 4.0/4.3 (97%)</div>
+            <div class="edu-thesis">Thesis: Multi-modal Data Usage for Smart City Mobility Services</div>
+          </div>
+        </div>
+        <div class="edu-item reveal">
+          <div class="edu-year">2012–2016</div>
+          <div>
+            <div class="edu-degree">B.Tech. Electronics &amp; Communication</div>
+            <div class="edu-school">Galgotias College of Engineering (AKTU)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-label">Scholarship</div>
+  <h2>Research <span>Publications</span></h2>
+  <div class="pub-tabs">
+    <button class="pub-tab active" onclick="showTab('journals',this)">Journal Papers</button>
+    <button class="pub-tab" onclick="showTab('conferences',this)">Conference &amp; Preprints</button>
+  </div>
+
+  <!-- JOURNALS -->
+  <div class="pub-list active" id="journals">
+
+    <div class="pub-item under-review reveal">
+      <div class="pub-venue">IEEE T-ITS · Under Review</div>
+      <div class="pub-title">Self-Supervised Visual Language Learning for Explainable Accident-Prone Feature Discovery</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Mishra, M., Ko, K.W., and Har, D.</div>
+      <span class="pub-badge badge-review">Under Review</span>
+    </div>
+
+    <div class="pub-item under-review reveal">
+      <div class="pub-venue">IEEE Transactions on ETCI · Under Review</div>
+      <div class="pub-title">Zero-Shot Road Anomaly Detection Based on Text Corpus Knowledge and Segmentation-First Localization</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Kumar, H., Shyam, P., Har, D., and Ko, K.W.</div>
+      <span class="pub-badge badge-review">Under Review</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">ISPRS Journal · Elsevier 2026</div>
+      <div class="pub-title">Cross-Modal Distillation for Real-time Wildfire Detection and Localization in Edge-Deployed Aerial Vehicles</div>
+      <div class="pub-authors">Mishra, M., <strong>Mishra, S.</strong>, and Shin, H.</div>
+      <span class="pub-badge badge-if">IF: 12.2</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">IEEE Signal Processing Letters 2026</div>
+      <div class="pub-title">IMUDistill: Knowledge Transfer for Enhancing Low Precision IMU Performance</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Kumar, H., Ko, K.W., and Har, D.</div>
+      <span class="pub-badge badge-if">IF: 3.9</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">IEEE ITS Magazine 2025</div>
+      <div class="pub-title">A Secure, Blockchain-Enabled Vehicular Sensor Communication Protocol With Deep Learning-Assisted Anomaly Detection</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Sengar, N., and Har, D.</div>
+      <span class="pub-badge badge-if">IF: 5.1</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">IEEE Transactions on ITS 2025</div>
+      <div class="pub-title">TIME-VAD: Text-Informed Magnitude Enhancement Feature Learning for Vehicle Accident Detection</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Mishra, M., Shyam, P., and Har, D.</div>
+      <span class="pub-badge badge-featured">KAIST Breakthrough</span>
+      <span class="pub-badge badge-if">IF: 8.4</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">IEEE Sensors Journal 2024</div>
+      <div class="pub-title">Integrating Multi-sourced Sensor Data for Enhanced Traffic State Estimation</div>
+      <div class="pub-authors">Mishra, M., <strong>Mishra, S.</strong>, and Har, D.</div>
+      <span class="pub-badge badge-if">IF: 4.3</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">IEEE Transactions on ITS 2023</div>
+      <div class="pub-title">Sensing Accident-Prone Features in Urban Scenes for Proactive Driving and Accident Prevention</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Rajendran, P.K., Santos V, L.F., and Har, D.</div>
+      <span class="pub-badge badge-featured">KAIST Breakthrough</span>
+      <span class="pub-badge badge-if">IF: 8.5</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">Transportation Letters · Taylor &amp; Francis 2022</div>
+      <div class="pub-title">Adaptive Traffic Signal Control in Developing Countries Using Parameters from Crowd-Source Data</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Singh, V., Gupta, A., Bhattacharya, D., and Mudgal, A.</div>
+      <span class="pub-badge badge-if">IF: 3.6</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">ISPRS Int. Journal of Geo-Information · MDPI 2021</div>
+      <div class="pub-title">Application Based COVID-19 Micro-Mobility Solution for Safe and Smart Navigation in Pandemics</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Singh, N., and Bhattacharya, D.</div>
+      <span class="pub-badge badge-if">IF: 3.4</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">Journal of Cleaner Production · Elsevier 2019</div>
+      <div class="pub-title">Comparative Emission Study by Real-time Congestion Monitoring for Stable Pollution Policy</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Kushwaha, A., Aggrawal, D., Gupta, A.</div>
+      <span class="pub-badge badge-if">IF: 11.1</span>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">Optik · Elsevier 2016</div>
+      <div class="pub-title">Optical Parameters Testing to Redefine Visibility for Low Cost Transmissometer Using Channel Modeling</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong> and Ahuja, B.</div>
+      <span class="pub-badge badge-if">IF: 3.1</span>
+    </div>
+
+  </div>
+
+  <!-- CONFERENCES -->
+  <div class="pub-list" id="conferences">
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">ECCV 2022</div>
+      <div class="pub-title">RELMOBNET: A Robust Two-Stage End-To-End Training Approach for MobileNetV3 Based Relative Camera Pose Estimation</div>
+      <div class="pub-authors">Rajendran, P.K., <strong>Mishra, S.</strong>, Santos V, L.F., and Har, D.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">IEEE Intelligent Vehicles Symposium (IV) 2022</div>
+      <div class="pub-title">Infra Sim-to-Real: An Efficient Baseline and Dataset for Infrastructure-Based Online Object Detection and Tracking Using Domain Adaptation</div>
+      <div class="pub-authors">Shyam, P., <strong>Mishra, S.</strong>, Yoon, K.J., and Kim, K.S.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">ACM SIGSPATIAL IWCTS 2022</div>
+      <div class="pub-title">Assessing Micro-Mobility Services in Pandemics for Studying 10-Minutes Cities Concept in India</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Bhattacharya, D., Chaturvedi, A., and Singh, N.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">RiTA 2021</div>
+      <div class="pub-title">Socially Acceptable Route Planning and Trajectory Behavior Analysis of Personal Mobility Device</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Rajendran, P.K., and Har, D.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">arXiv · 2302.07440</div>
+      <div class="pub-title">RoadSafe: A Road Redesign Technique Achieving Enhanced Road Safety by Diffusion Model Inpainting</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Mishra, M., Kim, T., and Har, D.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">ISPRS Annals · SDSC-2018</div>
+      <div class="pub-title">Adaptive Traffic Light Cycle Time Controller Using Microcontrollers and Crowdsource Data of Google APIs</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong>, Bhattacharya, D., Gupta, A., Singh, V.R.</div>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-venue">IEEE INDICON 2015</div>
+      <div class="pub-title">Network Security Protocol For Constrained Resource Devices In Internet Of Things</div>
+      <div class="pub-authors"><strong>Mishra, S.</strong></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESEARCH PROJECTS -->
+<section id="projects">
+  <div class="section-label">Key Research</div>
+  <h2>Featured <span>Projects</span></h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-tag">IEEE T-ITS · Under Review</div>
+      <div class="project-title">VisText-Net: Explainable Accident-Prone Feature Discovery</div>
+      <div class="project-desc">
+        Dual-branch CLIP-based concept bottleneck model combining CNN and CLIP text encoder.
+        Automated concept discovery via mechanistic interpretability of linear perceptron weights
+        with counterfactual validation and optimal transport (Sinkhorn normalization) for
+        patch-to-concept assignment.
+      </div>
+      <div class="project-metrics">
+        <span class="metric">64.25% confidence drop (counterfactual)</span>
+        <span class="metric">39–63% reduction (CAM ablation)</span>
+        <span class="metric">CLIP + CBM</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-tag">IEEE T-ITS 2025 · IF 8.4</div>
+      <div class="project-title">TIME-VAD: Text-Informed Vehicle Accident Detection</div>
+      <div class="project-desc">
+        Reversed CLIP magnitude assumption for accident detection. Magnitude-Enhanced Multiple Instance
+        Learning with text-anchor contrastive loss and Dilated Temporal Conv-Attention (DTCA) block
+        (pyramid rates 1,2,4). Cross-domain generalization demonstrated CCD→DAD.
+      </div>
+      <div class="project-metrics">
+        <span class="metric">94.44% ROC-AUC (DoTA)</span>
+        <span class="metric">+9.74% over SOTA</span>
+        <span class="metric">99.97% AP (CCD)</span>
+        <span class="metric">KAIST Breakthrough</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-tag">IEEE T-ETCI · Under Review</div>
+      <div class="project-title">Zero-Shot Road Anomaly Detection</div>
+      <div class="project-desc">
+        Triple-CLS architecture with controlled noise injection for cross-modal synchronization.
+        Zero-shot captioning without paired training data. Systematic foundation model evaluation:
+        CLIP variants, BLIP, LLaVA — analysing accuracy-latency-size trade-offs for edge deployment.
+      </div>
+      <div class="project-metrics">
+        <span class="metric">92.42% accuracy</span>
+        <span class="metric">+16–22% over VLMs</span>
+        <span class="metric">15–25× smaller</span>
+        <span class="metric">Zero-Shot</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-tag">ISPRS 2026 · IF 12.2</div>
+      <div class="project-title">Cross-Modal Wildfire Detection (Edge AI)</div>
+      <div class="project-desc">
+        Thermal-to-optical knowledge transfer: CLIP teacher (frozen) → CNN student (trainable).
+        Spatial feature distillation via Pearson correlation; semantic-relation distillation via
+        cosine similarity affinity matrices. Optimized for aerial edge deployment.
+      </div>
+      <div class="project-metrics">
+        <span class="metric">100% image-level accuracy</span>
+        <span class="metric">2.99 GFLOPS</span>
+        <span class="metric">0.004s inference</span>
+        <span class="metric">Edge-AI</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <h2>Work <span>Experience</span></h2>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Jun 2025 – Nov 2025</div>
+      <div class="timeline-role">Remote Research Intern</div>
+      <div class="timeline-org">Amazon Fulfillment Technologies &amp; Robotics · Supervised by Dr. Pranjay Shyam (Applied Scientist II)</div>
+      <ul class="timeline-bullets">
+        <li>Built zero-shot anomaly detection (92.42% accuracy) with Triple-CLS architecture for cross-modal alignment</li>
+        <li>Evaluated foundation models (CLIP, BLIP, LLaVA) for edge deployment — accuracy-efficiency trade-offs</li>
+        <li>Contributed TIME-VAD framework achieving 94.44% on DoTA, 9.74% over prior SOTA</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Mar 2021 – Present</div>
+      <div class="timeline-role">Graduate Research Assistant</div>
+      <div class="timeline-org">Vehicular Intelligence Lab, KAIST · Advisor: Prof. Dongsoo Har</div>
+      <ul class="timeline-bullets">
+        <li>Leading 7 papers on multimodal learning (3 under review: IEEE T-ITS, ISPRS, IEEE SPL; 4 published, IF: 4.3–8.5)</li>
+        <li>Developed 3 CLIP-based frameworks: VisText-Net (CBMs), TIME-VAD, wildfire detection (cross-modal KD)</li>
+        <li>Achieved SOTA (95–100% accuracy) across 6 datasets with edge-deployment feasibility (2–3 GFLOPS)</li>
+        <li>Deployed accident-prone feature notification POC with Deloitte India (Lucknow region)</li>
+        <li>Led COVID-19 safe routing portal with Deloitte, GIZ, Univ. of Edinburgh — £11,500 grant</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Jun 2018 – Feb 2021</div>
+      <div class="timeline-role">Research Consultant</div>
+      <div class="timeline-org">Learnogether Technologies Pvt. Ltd.</div>
+      <ul class="timeline-bullets">
+        <li>Led smart-city AI projects on traffic management and urban mobility</li>
+        <li>Collaborated with Deloitte India on adaptive traffic signaling in Gurugram</li>
+        <li>Secured £11,500 grant (University of Edinburgh) and ₹12.5 lakh grant (MSME India)</li>
+        <li>Developed drowsy driver detection and eye-tracking for commercial transportation safety</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Aug 2016 – Jun 2018</div>
+      <div class="timeline-role">Research Scholar</div>
+      <div class="timeline-org">Galgotias College of Engineering and Technology</div>
+      <ul class="timeline-bullets">
+        <li>Developed real-time congestion mapping for Delhi region (similar to Google Environmental Insights)</li>
+        <li>POC for traffic light control, IoT network security, and low-cost visibility measurement</li>
+        <li>Published 4 papers; co-invented Indian Patent No. 538566 (deployed in Hyderabad &amp; Bangalore)</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical</div>
+  <h2>Core <span>Expertise</span></h2>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Vision-Language Foundation Models</div>
+      <div class="skill-tags">
+        <span class="skill-tag">CLIP</span>
+        <span class="skill-tag">DINO</span>
+        <span class="skill-tag">Florence</span>
+        <span class="skill-tag">BLIP</span>
+        <span class="skill-tag">LLaVA</span>
+        <span class="skill-tag">Concept Bottleneck Models</span>
+        <span class="skill-tag">Zero-shot Learning</span>
+        <span class="skill-tag">Few-shot Learning</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">Cross-modal Alignment</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Multimodal Learning</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Cross-modal Knowledge Distillation</span>
+        <span class="skill-tag">Contrastive Learning</span>
+        <span class="skill-tag">SimCLR</span>
+        <span class="skill-tag">MoCo</span>
+        <span class="skill-tag">Text-anchor Contrastive Loss</span>
+        <span class="skill-tag">Weak Supervision</span>
+        <span class="skill-tag">Multi-instance Learning</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Deep Learning &amp; Computer Vision</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">Vision Transformers (ViT, DeiT)</span>
+        <span class="skill-tag">Attention Mechanisms</span>
+        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">Detectron2</span>
+        <span class="skill-tag">MMDetection</span>
+        <span class="skill-tag">Grad-CAM / CAM</span>
+        <span class="skill-tag">Domain Adaptation</span>
+        <span class="skill-tag">Edge-AI Optimization</span>
+        <span class="skill-tag">Model Compression</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Tools &amp; Infrastructure</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python (8+ years)</span>
+        <span class="skill-tag">Hugging Face</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Weights &amp; Biases</span>
+        <span class="skill-tag">TensorBoard</span>
+        <span class="skill-tag">Jupyter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATENTS -->
+<section id="patents" style="background:var(--bg2)">
+  <div class="section-label">IP &amp; Deployment</div>
+  <h2>Patents &amp; <span>Deployed Systems</span></h2>
+  <div class="patent-item reveal">
+    <div class="patent-id">Indian Patent No. 538566 · Granted 2024</div>
+    <div class="patent-title">System for Spatio-Temporal Traffic Data Reporting for Smart City Services</div>
+    <div class="patent-detail">Gupta, A. and Mishra, S. · Deployed in Hyderabad &amp; Bangalore for adaptive traffic signaling · Covered by Times of India &amp; Amar Ujala</div>
+  </div>
+  <div class="patent-item reveal">
+    <div class="patent-id">Korean Patent Application 10-2024-0103095 · Pending</div>
+    <div class="patent-title">Real-Time Traffic Monitoring and Analysis System</div>
+    <div class="patent-detail">Mishra, S., Mishra, M., Har, D. · KAIST-supported filing</div>
+  </div>
+  <div class="patent-item reveal">
+    <div class="patent-id">Korean Patent Application 10-2024-0087193 · Pending</div>
+    <div class="patent-title">Accident Probability Prediction System</div>
+    <div class="patent-detail">Mishra, S., Mishra, M., Har, D. · KAIST-supported filing</div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-label">Recognition</div>
+  <h2>Awards &amp; <span>Grants</span></h2>
+  <ul class="awards-list">
+    <li>Full-Funding KAIST Scholarship (MS &amp; PhD in Robotics) <span>2021–Present</span></li>
+    <li>£11,500 Grant · University of Edinburgh · MobilitySafe Project <span>2020</span></li>
+    <li>₹12.5 Lakh Project Grant · MSME, Government of India <span>2018</span></li>
+    <li>Featured in KAIST Breakthrough (TIME-VAD) <span>2025</span></li>
+    <li>Featured in KAIST Breakthrough (Accident-Prone Feature Detection) <span>2023</span></li>
+    <li>Media Coverage: Times of India &amp; Amar Ujala (Patent / Smart Traffic System) <span>2024</span></li>
+  </ul>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2>Contact &amp; <span>References</span></h2>
+  <div class="contact-grid">
+    <div class="contact-item reveal">
+      <div class="contact-label">KAIST Email</div>
+      <div class="contact-value"><a href="/cdn-cgi/l/email-protection#c0b3b5ada9b4ada9b3a8b2a1f2f0f980aba1a9b3b4eea1a3eeabb2"><span class="__cf_email__" data-cfemail="c3b0b6aeaab7aeaab0abb1a2f1f3fa83a8a2aab0b7eda2a0eda8b1">[email&#160;protected]</span></a></div>
+    </div>
+    <div class="contact-item reveal">
+      <div class="contact-label">Personal Email</div>
+      <div class="contact-value"><a href="/cdn-cgi/l/email-protection#4132342c28352c283229332073717801262c20282d6f222e2c"><span class="__cf_email__" data-cfemail="740701191d00191d071c061546444d341319151d185a171b19">[email&#160;protected]</span></a></div>
+    </div>
+    <div class="contact-item reveal">
+      <div class="contact-label">Phone</div>
+      <div class="contact-value">(+82) 10-4493-5168</div>
+    </div>
+    <div class="contact-item reveal">
+      <div class="contact-label">Location</div>
+      <div class="contact-value">KAIST, Daejeon 34141, South Korea</div>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+    <a href="https://scholar.google.com/citations?user=eDlZ34UAAAAJ&hl=en" target="_blank" class="btn btn-primary">Google Scholar</a>
+    <a href="https://www.linkedin.com/in/sumit-mishra-13797386/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+  </div>
+
+  <div class="section-label" style="margin-top:4rem;margin-bottom:1.5rem;text-align:left">References</div>
+  <div class="refs-grid">
+    <div class="ref-card reveal">
+      <div class="ref-name">Prof. Dongsoo Har</div>
+      <div class="ref-role">PhD Advisor · CCS Graduate School of Mobility, KAIST</div>
+      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#97f3e4fff6e5d7fcf6fee4e3b9f6f4b9fce5"><span class="__cf_email__" data-cfemail="7713041f1605371c161e0403591614591c05">[email&#160;protected]</span></a></div>
+    </div>
+    <div class="ref-card reveal">
+      <div class="ref-name">Dr. Pranjay Shyam</div>
+      <div class="ref-role">Applied Scientist II · Amazon Fulfillment Technologies &amp; Robotics, Seattle</div>
+      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#d2a2a0b3bcb8b3abab92b3bfb3a8bdbcfcb1bdbf"><span class="__cf_email__" data-cfemail="106062717e7a71696950717d716a7f7e3e737f7d">[email&#160;protected]</span></a></div>
+    </div>
+    <div class="ref-card reveal">
+      <div class="ref-name">Dr. Luiz Felipe Vecchietti</div>
+      <div class="ref-role">Senior Researcher · Max Planck Institute for Security &amp; Privacy, Germany</div>
+      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#f59390999c8590db839096969d9c9081819cb598859cd88685db9a8792"><span class="__cf_email__" data-cfemail="e385868f8a9386cd958680808b8a8697978aa38e938ace9093cd8c9184">[email&#160;protected]</span></a></div>
+    </div>
+    <div class="ref-card reveal">
+      <div class="ref-name">Prof. Ankit Gupta</div>
+      <div class="ref-role">MoRTH Chair Professor · Department of Civil Engineering, IIT (BHU)</div>
+      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#c7a6a9acaeb3e9a4aeb187aeaeb3a5afb2e9a6a4e9aea9"><span class="__cf_email__" data-cfemail="2b4a4540425f0548425d6b42425f49435e054a48054245">[email&#160;protected]</span></a></div>
+    </div>
+    <div class="ref-card reveal">
+      <div class="ref-name">Dr. Devanjan Bhattacharya</div>
+      <div class="ref-role">MSCA TRAIN@ED Fellow · University of Edinburgh</div>
+      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#6
