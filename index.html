@@ -234,10 +234,11 @@ h2 span { color:var(--blue); font-style:italic; }
 
 /* ── AWARDS ── */
 .awards-list { list-style:none; display:flex; flex-direction:column; gap:.7rem; }
-.awards-list li { display:flex; justify-content:space-between; align-items:center; padding:.95rem 1.3rem; background:#fff; border:1px solid var(--border); border-radius:6px; font-size:.9rem; color:var(--text); transition:box-shadow .18s; }
+.awards-list li { display:flex; justify-content:space-between; align-items:center; padding:.95rem 1.3rem; background:#fff; border:1px solid var(--border); border-radius:6px; font-size:.9rem; color:var(--text); transition:box-shadow .18s; width:100%; }
 .awards-list li:hover { box-shadow:0 3px 10px rgba(0,0,0,.06); }
-.awards-list li span { font-family:'DM Mono',monospace; font-size:.71rem; color:var(--blue); white-space:nowrap; margin-left:1rem; }
-.awards-list li a:hover { color:var(--blue) !important; text-decoration:underline !important; }
+.awards-list li span { font-family:'DM Mono',monospace; font-size:.71rem; color:var(--blue); white-space:nowrap; margin-left:1rem; flex-shrink:0; }
+.awards-list li a { color:inherit; }
+.awards-list li a:hover { color:var(--blue); text-decoration:underline; }
 
 /* ── CONTACT ── */
 #contact { text-align:center; }
@@ -310,8 +311,8 @@ footer { background:var(--navy); padding:1.7rem 8vw; display:flex; justify-conte
     <div class="hero-links">
       <a href="https://scholar.google.com/citations?user=eDlZ34UAAAAJ&hl=en" target="_blank" class="btn btn-primary">Google Scholar</a>
       <a href="https://www.linkedin.com/in/sumit-mishra-13797386/" target="_blank" class="btn btn-ghost">LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#84f7f1e9edf0e9edf7ecf6e5b6b4bdc4efe5edf7f0aae5e7aaeff6" class="btn btn-ghost">Email KAIST</a>
-      <a href="/cdn-cgi/l/email-protection#6d1e1800041900041e051f0c5f5d542d0a000c0401430e0200" class="btn btn-ghost">Email Gmail</a>
+      <a href="mailto:sumitmishra209@kaist.ac.kr" class="btn btn-ghost">sumitmishra209@kaist.ac.kr</a>
+      <a href="mailto:sumitmishra209@gmail.com" class="btn btn-ghost">sumitmishra209@gmail.com</a>
       <a href="files/Sumit_Mishra_CV.pdf" download class="btn btn-download">&#8595; CV</a>
       <a href="files/Sumit_Mishra_Resume.pdf" download class="btn btn-download">&#8595; Resume</a>
     </div>
@@ -693,11 +694,11 @@ footer { background:var(--navy); padding:1.7rem 8vw; display:flex; justify-conte
   <div class="divider"></div>
   <ul class="awards-list">
     <li>Full-Funding KAIST Scholarship (MS &amp; PhD in Robotics) <span>2021 – Present</span></li>
-    <li><a href="https://peacetech.epcc.ed.ac.uk/mobisafe" target="_blank" style="color:inherit;text-decoration:none">£11,500 Grant · University of Edinburgh · MobilitySafe Project ↗</a> <span>2020</span></li>
-    <li>&#8377;12.5 Lakh Project Grant · MSME, Government of India <span>2018</span></li>
+    <li><a href="https://drive.google.com/file/d/1gMxKnz5lIWpEzpP9QAExPPAsGsM2rJtO/view" target="_blank" style="color:inherit;text-decoration:none">£11,500 Grant · University of Edinburgh · MobilitySafe Project ↗</a> <span>2020</span></li>
+    <li><a href="https://drive.google.com/file/d/0B17qtKfBxI0yOXBUOTRDR01GTW8/view?resourcekey=0-MUTdGFAgS8WakheGZz5EAQ" target="_blank" style="color:inherit;text-decoration:none">&#8377;12.5 Lakh Project Grant · MSME, Government of India ↗</a> <span>2018</span></li>
     <li><a href="https://breakthroughs.kaist.ac.kr/sub02/view/id/11190" target="_blank" style="color:inherit;text-decoration:none">Featured in KAIST Breakthrough — TIME-VAD ↗</a> <span>2025</span></li>
     <li><a href="https://breakthroughs.kaist.ac.kr/sub02/view/id/87" target="_blank" style="color:inherit;text-decoration:none">Featured in KAIST Breakthrough — Accident-Prone Feature Detection ↗</a> <span>2023</span></li>
-    <li>Media Coverage: <a href="https://timesofindia.indiatimes.com/city/varanasi/smart-city-traffic-system-developed-by-iit-bhu-assistant-professor-and-phd-student-granted-patent/amp_articleshow/110923607.cms" target="_blank">Times of India</a> &amp; <a href="https://www.amarujala.com/uttar-pradesh/varanasi/smart-city-traffic-system-will-improve-city-traffic-system-in-varanasi-2024-06-11?pageId=2" target="_blank">Amar Ujala</a> (Smart Traffic Patent) <span>2024</span></li>
+    <li>Media Coverage: <a href="https://timesofindia.indiatimes.com/city/varanasi/smart-city-traffic-system-developed-by-iit-bhu-assistant-professor-and-phd-student-granted-patent/amp_articleshow/110923607.cms" target="_blank">Times of India</a> &amp; <a href="https://www.amarujala.com/uttar-pradesh/varanasi/smart-city-traffic-system-will-improve-city-traffic-system-in-varanasi-2024-06-11?pageId=2" target="_blank">Amar Ujala</a> — Smart Traffic Patent <span>2024</span></li>
   </ul>
 </section>
 
@@ -709,11 +710,11 @@ footer { background:var(--navy); padding:1.7rem 8vw; display:flex; justify-conte
   <div class="contact-grid">
     <div class="contact-item reveal">
       <div class="contact-label">KAIST Email</div>
-      <div class="contact-value"><a href="/cdn-cgi/l/email-protection#1b686e76726f76726873697a292b225b707a72686f357a78357069"><span class="__cf_email__" data-cfemail="c5b6b0a8acb1a8acb6adb7a4f7f5fc85aea4acb6b1eba4a6ebaeb7">[email&#160;protected]</span></a></div>
+      <div class="contact-value"><a href="mailto:sumitmishra209@kaist.ac.kr">sumitmishra209@kaist.ac.kr</a></div>
     </div>
     <div class="contact-item reveal">
       <div class="contact-label">Personal Email</div>
-      <div class="contact-value"><a href="/cdn-cgi/l/email-protection#d6a5a3bbbfa2bbbfa5bea4b7e4e6ef96b1bbb7bfbaf8b5b9bb"><span class="__cf_email__" data-cfemail="7300061e1a071e1a001b011241434a33141e121a1f5d101c1e">[email&#160;protected]</span></a></div>
+      <div class="contact-value"><a href="mailto:sumitmishra209@gmail.com">sumitmishra209@gmail.com</a></div>
     </div>
     <div class="contact-item reveal">
       <div class="contact-label">Phone</div>
@@ -735,27 +736,27 @@ footer { background:var(--navy); padding:1.7rem 8vw; display:flex; justify-conte
     <div class="ref-card reveal">
       <div class="ref-name">Prof. Dongsoo Har</div>
       <div class="ref-role">PhD Advisor · CCS Graduate School of Mobility, KAIST</div>
-      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#93f7e0fbf2e1d3f8f2fae0e7bdf2f0bdf8e1"><span class="__cf_email__" data-cfemail="6d091e050c1f2d060c041e19430c0e43061f">[email&#160;protected]</span></a></div>
+      <div class="ref-email"><a href="mailto:dshar@kaist.ac.kr">dshar@kaist.ac.kr</a></div>
     </div>
     <div class="ref-card reveal">
       <div class="ref-name">Dr. Pranjay Shyam</div>
       <div class="ref-role">Applied Scientist II · Amazon Fulfillment Technologies &amp; Robotics, Seattle</div>
-      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#bdcdcfdcd3d7dcc4c4fddcd0dcc7d2d393ded2d0"><span class="__cf_email__" data-cfemail="bacac8dbd4d0dbc3c3fadbd7dbc0d5d494d9d5d7">[email&#160;protected]</span></a></div>
+      <div class="ref-email"><a href="mailto:pranjayy@amazon.com">pranjayy@amazon.com</a></div>
     </div>
     <div class="ref-card reveal">
       <div class="ref-name">Dr. Luiz Felipe Vecchietti</div>
       <div class="ref-role">Senior Researcher · Max Planck Institute for Security &amp; Privacy, Germany</div>
-      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#3c5a5950554c59124a595f5f5455594848557c514c55114f4c12534e5b"><span class="__cf_email__" data-cfemail="3355565f5a43561d455650505b5a5647475a735e435a1e40431d5c4154">[email&#160;protected]</span></a></div>
+      <div class="ref-email"><a href="mailto:felipe.vecchietti@mpi-sp.org">felipe.vecchietti@mpi-sp.org</a></div>
     </div>
     <div class="ref-card reveal">
       <div class="ref-name">Prof. Ankit Gupta</div>
       <div class="ref-role">MoRTH Chair Professor · Dept. of Civil Engineering, IIT (BHU)</div>
-      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#74151a1f1d005a171d02341d1d00161c015a15175a1d1a"><span class="__cf_email__" data-cfemail="90f1fefbf9e4bef3f9e6d0f9f9e4f2f8e5bef1f3bef9fe">[email&#160;protected]</span></a></div>
+      <div class="ref-email"><a href="mailto:ankit.civ@iitbhu.ac.in">ankit.civ@iitbhu.ac.in</a></div>
     </div>
     <div class="ref-card reveal">
       <div class="ref-name">Dr. Devanjan Bhattacharya</div>
       <div class="ref-role">MSCA TRAIN@ED Fellow · University of Edinburgh</div>
-      <div class="ref-email"><a href="/cdn-cgi/l/email-protection#54307a363c35202035373c35262d351431307a35377a213f"><span class="__cf_email__" data-cfemail="086c266a60697c7c696b60697a7169486d6c26696b267d63">[email&#160;protected]</span></a></div>
+      <div class="ref-email"><a href="mailto:d.bhattacharya@ed.ac.uk">d.bhattacharya@ed.ac.uk</a></div>
     </div>
   </div>
 </section>
@@ -766,7 +767,7 @@ footer { background:var(--navy); padding:1.7rem 8vw; display:flex; justify-conte
   <div>Last updated: March 2026</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Tab switching + force-reveal items in newly shown tab
     document.querySelectorAll('.pub-tab').forEach(function(btn) {
       btn.addEventListener('click', function() {
