@@ -779,4 +779,49 @@
   </div>
 </section>
 
-<!-- FOOTER
+<!-- FOOTER -->
+<footer>
+  <div>&#169; 2026 Sumit Mishra &nbsp;·&nbsp; KAIST Vehicular Intelligence Lab</div>
+  <div>Last updated: March 2026</div>
+</footer>
+
+<script>
+  // Make ALL reveal items visible immediately on page load (avoids hidden tab issue)
+  function revealAll() {
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }
+
+  // Tab switching
+  document.querySelectorAll('.pub-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tabId = this.getAttribute('data-tab');
+      document.querySelectorAll('.pub-list').forEach(function(el) { el.classList.remove('active'); });
+      document.querySelectorAll('.pub-tab').forEach(function(el) { el.classList.remove('active'); });
+      document.getElementById(tabId).classList.add('active');
+      this.classList.add('active');
+      // Ensure items in newly shown tab are visible
+      document.getElementById(tabId).querySelectorAll('.reveal').forEach(function(el) {
+        el.classList.add('visible');
+      });
+    });
+  });
+
+  // Scroll reveal with fallback
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  } else {
+    revealAll();
+  }
+</script>
+</body>
+</html>
