@@ -234,9 +234,10 @@ h2 span { color:var(--blue); font-style:italic; }
 
 /* ── AWARDS ── */
 .awards-list { list-style:none; display:flex; flex-direction:column; gap:.7rem; }
-.awards-list li { display:flex; justify-content:space-between; align-items:center; padding:.95rem 1.3rem; background:#fff; border:1px solid var(--border); border-radius:6px; font-size:.9rem; color:var(--text); transition:box-shadow .18s; width:100%; }
+.awards-list li { display:flex; justify-content:space-between; align-items:center; padding:.95rem 1.3rem; background:#fff; border:1px solid var(--border); border-radius:6px; font-size:.9rem; color:var(--text); transition:box-shadow .18s; width:100%; gap:.5rem; }
 .awards-list li:hover { box-shadow:0 3px 10px rgba(0,0,0,.06); }
-.awards-list li span { font-family:'DM Mono',monospace; font-size:.71rem; color:var(--blue); white-space:nowrap; margin-left:1rem; flex-shrink:0; }
+.awards-list li > *:first-child { flex:1; }
+.awards-list li span { font-family:'DM Mono',monospace; font-size:.71rem; color:var(--blue); white-space:nowrap; flex-shrink:0; }
 .awards-list li a { color:inherit; }
 .awards-list li a:hover { color:var(--blue); text-decoration:underline; }
 
@@ -311,8 +312,8 @@ footer { background:var(--navy); padding:1.7rem 8vw; display:flex; justify-conte
     <div class="hero-links">
       <a href="https://scholar.google.com/citations?user=eDlZ34UAAAAJ&hl=en" target="_blank" class="btn btn-primary">Google Scholar</a>
       <a href="https://www.linkedin.com/in/sumit-mishra-13797386/" target="_blank" class="btn btn-ghost">LinkedIn</a>
-      <a href="mailto:sumitmishra209@kaist.ac.kr" class="btn btn-ghost">sumitmishra209@kaist.ac.kr</a>
-      <a href="mailto:sumitmishra209@gmail.com" class="btn btn-ghost">sumitmishra209@gmail.com</a>
+      <a href="mailto:sumitmishra209@kaist.ac.kr" class="btn btn-ghost">KAIST Email</a>
+      <a href="mailto:sumitmishra209@gmail.com" class="btn btn-ghost">Personal Email</a>
       <a href="files/Sumit_Mishra_CV.pdf" download class="btn btn-download">&#8595; CV</a>
       <a href="files/Sumit_Mishra_Resume.pdf" download class="btn btn-download">&#8595; Resume</a>
     </div>
