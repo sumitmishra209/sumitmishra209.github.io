@@ -115,6 +115,15 @@ h2 span{color:var(--blue);font-style:italic}
 .awards-list li .aw-year{font-family:'DM Mono',monospace;font-size:.71rem;color:var(--blue);white-space:nowrap;flex-shrink:0}
 .awards-list li a{color:inherit}
 .awards-list li a:hover{color:var(--blue);text-decoration:underline}
+.service-grid{display:flex;flex-direction:column;gap:1.5rem}
+.service-block{padding:1.5rem;background:#fff;border:1px solid var(--border);border-radius:8px;transition:box-shadow .18s}
+.service-block:hover{box-shadow:0 4px 14px rgba(0,0,0,.07)}
+.service-title{font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:.9rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.service-tags{display:flex;flex-wrap:wrap;gap:.45rem}
+.service-tag{padding:.28rem .75rem;background:var(--bg2);border:1px solid var(--border);border-radius:4px;font-size:.82rem;color:var(--text)}
+.talk-item{padding:.9rem 1.1rem;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:0 6px 6px 0}
+.talk-title{font-size:.92rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
+.talk-venue{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--blue);letter-spacing:.08em;text-transform:uppercase}
 #contact{text-align:center}
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;max-width:820px;margin:0 auto 2.2rem;text-align:left}
 .contact-item{padding:1.2rem 1.3rem;background:#fff;border:1px solid var(--border);border-radius:8px}
@@ -146,6 +155,7 @@ footer{background:var(--navy);padding:1.7rem 8vw;display:flex;justify-content:sp
     <li><a href="#projects">Research</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#service">Service</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -369,6 +379,49 @@ footer{background:var(--navy);padding:1.7rem 8vw;display:flex;justify-content:sp
     <li><span class="aw-text"><a href="https://breakthroughs.kaist.ac.kr/sub02/view/id/87" target="_blank">Featured in KAIST Breakthrough &mdash; Accident-Prone Feature Detection &#8599;</a></span><span class="aw-year">2023</span></li>
     <li><span class="aw-text">Media Coverage: <a href="https://timesofindia.indiatimes.com/city/varanasi/smart-city-traffic-system-developed-by-iit-bhu-assistant-professor-and-phd-student-granted-patent/amp_articleshow/110923607.cms" target="_blank">Times of India</a> &amp; <a href="https://www.amarujala.com/uttar-pradesh/varanasi/smart-city-traffic-system-will-improve-city-traffic-system-in-varanasi-2024-06-11?pageId=2" target="_blank">Amar Ujala</a> &mdash; Smart Traffic Patent</span><span class="aw-year">2024</span></li>
   </ul>
+</section>
+
+<section id="service">
+  <div class="section-label">Community</div>
+  <h2>Academic <span>Service</span></h2>
+  <div class="divider"></div>
+  <div class="service-grid">
+    <div class="service-block">
+      <div class="service-title">Reviewer &mdash; Conferences</div>
+      <div class="service-tags">
+        <span class="service-tag">IEEE Intelligent Vehicles Symposium (IV)</span>
+        <span class="service-tag">ACM CHI &mdash; Conference on Human Factors in Computing Systems</span>
+      </div>
+    </div>
+    <div class="service-block">
+      <div class="service-title">Reviewer &mdash; Journals</div>
+      <div class="service-tags">
+        <span class="service-tag">IEEE Transactions on Intelligent Transportation Systems</span>
+        <span class="service-tag">IEEE Sensors Journal</span>
+        <span class="service-tag">IEEE Access</span>
+        <span class="service-tag">Array</span>
+        <span class="service-tag">Mobile Networks and Applications</span>
+        <span class="service-tag">Multimedia Tools and Applications</span>
+        <span class="service-tag">Scientific Reports</span>
+        <span class="service-tag">Qeios</span>
+        <span class="service-tag">Cluster Computing</span>
+        <span class="service-tag">Peer-to-Peer Networking and Applications</span>
+      </div>
+    </div>
+    <div class="service-block">
+      <div class="service-title">Invited Talks</div>
+      <div style="display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem">
+        <div class="talk-item">
+          <div class="talk-title">Multi-Modal Data Usage for Smart City Use Cases Especially Traffic Surveillance</div>
+          <div class="talk-venue">GCET</div>
+        </div>
+        <div class="talk-item">
+          <div class="talk-title">AI/ML Applications in Road Safety and Traffic</div>
+          <div class="talk-venue">IIT BHU</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
